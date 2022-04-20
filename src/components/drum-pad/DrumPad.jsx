@@ -1,17 +1,28 @@
 import React, { useEffect } from 'react'
 import Audio from '../audio/Audio'
 
-function DrumPad({ el }) {
+function DrumPad({ el, drumKeys }) {
+    // refactor code
     const playAudio = () => {
+        const displayScreen = document.getElementById('display')
+        displayScreen.innerText = '';
         const audioTag = document.getElementById(el.key)
         audioTag.play();
+        displayScreen.innerText = el.clip
     }
 
 
     useEffect(() => {
         window.addEventListener('keypress', (e) => {
-            const audioTag = document.getElementById(e.key.toUpperCase())
-            audioTag.play()
+            if (el.key === e.key.toUpperCase()) {
+                playAudio()
+            }
+            // const displayScreen = document.getElementById('display')
+            // const audioTag = document.getElementById(e.key.toUpperCase());
+            // const pressedElement = drumKeys.find(el => el.key === e.key.toUpperCase())
+            // displayScreen.innerText = pressedElement.clip
+            // audioTag.play();
+
         })
 
     }, [])
