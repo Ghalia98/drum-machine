@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Audio from '../audio/Audio'
+import { VolumeContext } from '../../App'
 
 
 function DrumPad({ el }) {
     const [active, setActive] = useState(false)
-
+    const [volume] = useContext(VolumeContext)
     const playAudio = () => {
         setActive(true)
         const displayScreen = document.getElementById('display')
         const audioTag = document.getElementById(el.key)
+        audioTag.currentTime = 0
         audioTag.play();
-
+        audioTag.volume = volume
+        console.log(volume)
         displayScreen.innerText = el.clip
 
         setTimeout(() => {

@@ -1,7 +1,13 @@
-import './App.css';
+import React, { useState } from 'react';
+import './App.scss';
 import DrumPad from './components/drum-pad/DrumPad';
+import VolumeSlider from './components/volume/VolumeSlider';
+
+export const VolumeContext = React.createContext()
 
 function App() {
+  const [volume, setVolume] = useState('0.5')
+
   const drumKeys = [{
     key: 'Q',
     audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3',
@@ -48,10 +54,15 @@ function App() {
   ]
   return (
     <div id='drum-machine'>
-      <div id='display'>
-      </div>
-      {drumKeys.map((el, index) => (<DrumPad key={index} el={el} />))
-      }
+      <h1>Drum Machine</h1>
+      <VolumeContext.Provider value={[volume, setVolume]}>
+        <div id='display'>
+        </div>
+        {drumKeys.map((el, index) => (<DrumPad key={index} el={el} />))
+        }
+        <VolumeSlider />
+      </VolumeContext.Provider>
+
     </div>
   );
 }
