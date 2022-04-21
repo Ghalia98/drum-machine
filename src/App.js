@@ -50,7 +50,7 @@ function App() {
     <div id='drum-machine'>
       <div id='display'>
       </div>
-      {drumKeys.map((el, index) => (<DrumPad key={index} el={el} drumKeys={drumKeys} />))
+      {drumKeys.map((el, index) => (<DrumPad key={index} el={el} />))
       }
     </div>
   );
