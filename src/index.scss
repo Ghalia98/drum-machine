@@ -1,3 +1,12 @@
+@mixin common ($a, $b, $c, $d, $e, $f) {
+  display: flex;
+  flex-direction: $a;
+  justify-content: $b;
+  align-items: $c;
+  width: $d;
+  height: $e;
+  background-color: $f;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +14,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @include common(row, center, center, 100%, 100vh, #3c6e71);
+  #root {
+    @include common(column, center, center, 100%, 100vh, #3c6e71);
+    color: black;
+
+  }
 }
 
 code {

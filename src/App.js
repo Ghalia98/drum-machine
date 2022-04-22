@@ -53,17 +53,20 @@ function App() {
   }
   ]
   return (
-    <div id='drum-machine'>
+    <>
       <h1>Drum Machine</h1>
-      <VolumeContext.Provider value={[volume, setVolume]}>
-        <div id='display'>
-        </div>
-        {drumKeys.map((el, index) => (<DrumPad key={index} el={el} />))
-        }
-        <VolumeSlider />
-      </VolumeContext.Provider>
-
-    </div>
+      <div id='drum-machine'>
+        <VolumeContext.Provider value={[volume, setVolume]}>
+          <div id='display'>
+          </div>
+          <div className='pads-container'>
+            {drumKeys.map((el, index) => (<DrumPad key={index} el={el} />))
+            }
+          </div>
+          <VolumeSlider />
+        </VolumeContext.Provider>
+      </div>
+    </>
   );
 }
 

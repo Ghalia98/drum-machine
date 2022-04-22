@@ -1,3 +1,17 @@
+@import './index.scss';
+
 #drum-machine {
-  text-align: center;
+text-align: center;
+border: 1px black solid;
+@include common(column, center, center, 25%, 400px,whitesmoke);
+padding: 15px 0;
+#display {
+  background-color: rgb(220, 214, 214);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.pads-container {
+  @include common(row, center, center, 100%, 100%,whitesmoke);
+  flex-wrap: wrap;
+} 
 }

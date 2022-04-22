@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Audio from '../audio/Audio'
 import { VolumeContext } from '../../App'
+import './DrumPad.scss'
 
 
 function DrumPad({ el }) {
@@ -11,8 +12,8 @@ function DrumPad({ el }) {
         const displayScreen = document.getElementById('display')
         const audioTag = document.getElementById(el.key)
         audioTag.currentTime = 0
-        audioTag.play();
         audioTag.volume = volume
+        audioTag.play();
         console.log(volume)
         displayScreen.innerText = el.clip
 
@@ -24,15 +25,20 @@ function DrumPad({ el }) {
     }
 
     useEffect(() => {
-        window.addEventListener('keypress', (e) => {
-            if (el.key === e.key.toUpperCase()) {
-                playAudio()
-            }
-        })
-    }, [])
+        window.addEventListener('keypress', handlePress)
+        return () => {
+            window.removeEventListener('keypress', handlePress)
+        }
+    }, [el])
+
+    const handlePress = (e) => {
+        if (el.key === e.key.toUpperCase()) {
+            playAudio()
+        }
+    }
 
     return (
-        <button onClick={playAudio} id={el.key + '-Key'} className='drum-pad' style={active ? { color: 'red' } : { color: 'black' }}>{el.key}
+        <button onClick={playAudio} id={el.key + '-Key'} className='drum-pad' style={active ? { backgroundColor: '#ffe66d' } : { backgroundColor: '#cacfd6' }}>{el.key}
             <Audio el={el} />
         </button>
     )
